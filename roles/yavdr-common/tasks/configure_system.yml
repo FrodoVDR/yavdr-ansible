@@ -106,6 +106,13 @@
     name: "{{ vdr.group }}"
 
 # TODO: ensure openbox, vdr, xorg etc. are stopped
+- name: Check if vdr user exists
+  ansible.builtin.getent:
+    database: passwd
+    key: "{{ vdr.user }}"
+  failed_when: false
+  register: vdr_user_check
+
 - name: Create vdr user
   ansible.builtin.user:
     name: "{{ vdr.user }}"
@@ -114,6 +121,7 @@
     home: "{{ vdr.home }}"
     shell: "/bin/bash"
     state: present
+  when: vdr_user_check.getent_passwd is undefined or vdr_user_check.getent_passwd[vdr.user] is undefined
 
 - name: Prepare /var/lib/vdr
   ansible.builtin.file:
