@@ -112,6 +112,7 @@
         src: templates/xorg.conf.j2
         dest: /etc/X11/xorg.conf
         mode: '0644'
+      when: custom_display_config.primary is not none and custom_display_config.primary
 
 - name: Create nouveau xorg config snippet
   ansible.builtin.template:
