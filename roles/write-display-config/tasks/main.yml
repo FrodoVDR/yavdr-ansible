@@ -82,11 +82,35 @@
   when:
     - nvidia_detected | bool
   block:
+    - name: Create backup directory for xorg.conf
+      ansible.builtin.file:
+        path: /etc/X11/backup
+        state: directory
+        mode: '0755'
+        owner: root
+        group: root
+
+    - name: Check if xorg.conf exists
+      ansible.builtin.stat:
+        path: /etc/X11/xorg.conf
+      register: xorg_conf_stat
+
+    - name: Backup existing xorg.conf with timestamp
+      when: xorg_conf_stat.stat.exists
+      block:
+        - name: Get current date and time
+          ansible.builtin.set_fact:
+            backup_timestamp: "{{ ansible_date_time.iso8601_basic_short }}"
+
+        - name: Move existing xorg.conf to backup directory
+          ansible.builtin.command:
+            cmd: "mv /etc/X11/xorg.conf /etc/X11/backup/xorg.conf.{{ backup_timestamp }}"
+          changed_when: true
+
     - name: Create xorg.conf (for nvidia driver)
       ansible.builtin.template:
         src: templates/xorg.conf.j2
         dest: /etc/X11/xorg.conf
-        backup: true
         mode: '0644'
 
 - name: Create nouveau xorg config snippet
