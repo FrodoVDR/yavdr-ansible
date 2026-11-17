@@ -71,6 +71,7 @@
     state: restarted
     enabled: true
     masked: false
+  ignore_errors: true
 
 - name: Ensure avahi-linker is started
   ansible.builtin.systemd:
@@ -78,6 +79,7 @@
     state: started
     enabled: true
     masked: false
+  ignore_errors: true
 
 # - name: Ensure additional services for avahi-linker are active
 #   ansible.builtin.systemd:
