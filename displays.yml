@@ -9,4 +9,4 @@
     - yavdr-xorg
 
   handlers:
-    - include: handlers/main.yml
+    - import_tasks: handlers/main.yml

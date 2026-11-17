@@ -94,7 +94,7 @@
         enabled: true
         masked: false
         daemon_reload: true
-      ignore_errors: yes
+      ignore_errors: true
   when:
     - nvidia_detected | bool
     - nvidia_driver_installed | bool

@@ -56,4 +56,4 @@
     - pulseaudio.service
     - yavdr-frontend.service
     - wm-exit.service
-  ignore_errors: yes
+  ignore_errors: true

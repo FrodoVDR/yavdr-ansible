@@ -14,7 +14,7 @@
 
     - name: "command | reconfigure cloud-init package"
       command: dpkg-reconfigure -f noninteractive cloud-init
-      ignore_errors: yes
+      ignore_errors: true
       when:  cloud_init_debconf.changed
       # notify: ['rerun required']
 
@@ -162,7 +162,7 @@
     state: present
     regexp: '^(Prompt=).*$'
     line: 'Prompt=never'
-  ignore_errors: yes
+  ignore_errors: true
 - name: apt | install basic packages
   apt:
     name:

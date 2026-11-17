@@ -35,7 +35,7 @@
     - lircd.socket
     - lircmd.service
     - lircd-uinput.service
-  ignore_errors: yes
+  ignore_errors: true
   tags:
     - systemd
 
