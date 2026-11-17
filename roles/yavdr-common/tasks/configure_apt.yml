@@ -25,3 +25,4 @@
   ansible.builtin.apt:
     upgrade: dist
     update_cache: true
+    allow_downgrade: true
