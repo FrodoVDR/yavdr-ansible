@@ -108,7 +108,7 @@
 # TODO: ensure openbox, vdr, xorg etc. are stopped
 - name: Stop vdr processes
   ansible.builtin.command:
-    cmd: "killall -9 vdr"
+    cmd: "pkill -9 -u vdr"
   failed_when: false
   changed_when: false
 
