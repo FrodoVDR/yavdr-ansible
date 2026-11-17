@@ -55,6 +55,23 @@
         owner: root
         group: root
 
+- name: Ensure firefox defaults directory exists
+  ansible.builtin.file:
+    path: /usr/lib/firefox/defaults
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+    recurse: yes
+
+- name: Ensure firefox preferences directory exists
+  ansible.builtin.file:
+    path: /usr/lib/firefox/defaults/pref
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
 - name: Create autoconfig.js for firefox
   ansible.builtin.copy:
     src: files/autoconfig.js
