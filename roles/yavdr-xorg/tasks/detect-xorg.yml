@@ -13,7 +13,8 @@
     name: "yavdr-xorg.service"
     state: stopped
     enabled: true
-  notify: ["Start yavdr-xorg"]
+  notify: ["StartA yavdr-xorg"]
+  ignore_errors: true
 
 - name: Check if /etc/yavdr/display_config exists
   ansible.builtin.stat:
