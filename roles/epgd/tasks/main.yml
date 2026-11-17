@@ -27,7 +27,7 @@
     group: root
     mode: '0644'
 
-- name: Create /root/.ssh if it doesn't exist yes
+- name: Create /root/.ssh if it doesn't exist
   ansible.builtin.file:
     path: /root/.ssh
     state: directory
